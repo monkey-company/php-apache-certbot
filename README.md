@@ -6,12 +6,12 @@ Docker image with php, apache and certbot. Based on webdevops/php-apache
 - DOMAINS : ```domain.tld```
 - EMAIL : ```admin@domain.tld```
 
-# Volumes :
+# Volumes
 - Certificates : ```/etc/letsencrypt/live/```
 - Apache configuration : ```/opt/docker/etc/httpd/```
 - Apache webroot : ```/app/```
 
-# Port :
+# Port
 - HTTP : ```80```
 - HTTPS : ```443```
 
