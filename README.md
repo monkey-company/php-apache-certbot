@@ -4,7 +4,7 @@ Docker image with php, apache and certbot. Based on webdevops/php-apache
 # Variables
 
 - DOMAINS : ```domain.tld```
-- EMAIL : ```admin@domain.tld```
+- EMAIL : ``` admin@domain.tld ```
 
 # Volumes
 - Certificates : ```/etc/letsencrypt/live/```
