@@ -7,7 +7,7 @@ Docker image with php, apache and certbot. Based on webdevops/php-apache
 - EMAIL : ``` admin@domain.tld ```
 
 # Volumes
-- Certificates : ```/etc/letsencrypt/live/```
+- Certificates : ```/etc/letsencrypt/archive/```
 - Apache configuration : ```/opt/docker/etc/httpd/```
 - Apache webroot : ```/app/```
 
@@ -31,7 +31,7 @@ php-apache-certbot:
     DOMAINS: 'example.com'
     EMAIL: 'admin@example.com'
   volumes:
-    - ${PWD}/gluster/certs/:/etc/letsencrypt/live/
+    - ${PWD}/gluster/certs/:/etc/letsencrypt/archive/
     - ${PWD}/gluster/conf/:/opt/docker/etc/httpd/
     - ${PWD}/gluster/www/:/app/
 ```
