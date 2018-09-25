@@ -51,4 +51,4 @@ If you use Kubernetes or Rancher, regenerate all the containers to apply the con
 
 # Step five (Optionnal)
 
-If you need cron or additionnal commands, use the variable ``` SHFILE ``` and make script file :)
+If you need cron or additionnal commands, use the variable ``` SHFILE ``` for define a path and make script file :)
