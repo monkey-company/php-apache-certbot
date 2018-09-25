@@ -5,6 +5,7 @@ Docker image with php, apache and certbot. Based on webdevops/php-apache
 
 - DOMAINS : ```domain.tld```
 - EMAIL : ``` admin@domain.tld ```
+- SHFILE : ``` /opt/docker/etc/httpd/file.sh ```
 
 # Volumes
 - Certificates : ```/etc/letsencrypt/archive/```
@@ -47,3 +48,7 @@ Run the ```certbot --apache --non-interactive --agree-tos --email $EMAIL --domai
 # Step four (For k8s, rancher)
 
 If you use Kubernetes or Rancher, regenerate all the containers to apply the configurations in volumes.
+
+# Step five (Optionnal)
+
+If you need cron or additionnal commands, use the variable ``` SHFILE ``` and make script file :)
