@@ -8,7 +8,13 @@ Github project : [monkey-company/php-apache-certbot](https://github.com/monkey-c
 ## Global check
 
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmonkey-company%2Fphp-apache-certbot.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fmonkey-company%2Fphp-apache-certbot?ref=badge_shield)
+![GitHub](https://img.shields.io/github/license/monkey-company/php-apache-certbot.svg)
 [![Build Status](https://travis-ci.org/monkey-company/php-apache-certbot.svg?branch=master)](https://travis-ci.org/monkey-company/php-apache-certbot)
+![GitHub last commit](https://img.shields.io/github/last-commit/monkey-company/php-apache-certbot.svg)
+[![GitHub release](https://img.shields.io/github/release/monkey-company/php-apache-certbot.svg)](https://github.com/monkey-company/php-apache-certbot/releases/latest)
+![GitHub repo size in bytes](https://img.shields.io/github/repo-size/monkey-company/php-apache-certbot.svg)
+[![Docker Pulls](https://img.shields.io/docker/pulls/monkeycompany/php-apache-certbot.svg)](https://hub.docker.com/r/monkeycompany/php-apache-certbot/)
+![GitHub language count](https://img.shields.io/github/languages/count/monkey-company/php-apache-certbot.svg)
 
 # Variables
 
