@@ -5,6 +5,11 @@ Docker hub : [monkeycompany/php-apache-certbot](https://hub.docker.com/r/monkeyc
 
 Github project : [monkey-company/php-apache-certbot](https://github.com/monkey-company/php-apache-certbot)
 
+## Global check
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmonkey-company%2Fphp-apache-certbot.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fmonkey-company%2Fphp-apache-certbot?ref=badge_shield)
+[![Build Status](https://travis-ci.org/monkey-company/php-apache-certbot.svg?branch=master)](https://travis-ci.org/monkey-company/php-apache-certbot)
+
 # Variables
 
 - DOMAINS : ```domain.tld```
