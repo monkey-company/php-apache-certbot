@@ -11,6 +11,8 @@ Github project : [monkey-company/php-apache-certbot](https://github.com/monkey-c
 [![Build Status](https://travis-ci.org/monkey-company/php-apache-certbot.svg?branch=master)](https://travis-ci.org/monkey-company/php-apache-certbot)
 
 # Variables
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmonkey-company%2Fphp-apache-certbot.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fmonkey-company%2Fphp-apache-certbot?ref=badge_shield)
+
 
 - DOMAINS : ```domain.tld```
 - EMAIL : ``` admin@domain.tld ```
@@ -61,3 +63,7 @@ If you use Kubernetes or Rancher, regenerate all the containers to apply the con
 # Step five (Optionnal)
 
 If you need cron or additionnal commands, use the variable ``` SHFILE ``` for define a path and make script file :)
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmonkey-company%2Fphp-apache-certbot.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fmonkey-company%2Fphp-apache-certbot?ref=badge_large)
