@@ -2,3 +2,11 @@ sudo: required
 
 services:
   - docker
+
+before_install:
+- mkdir -p ${PWD}/gluster/certs/
+- mkdir -p ${PWD}/gluster/conf/
+- mkdir -p ${PWD}/gluster/www/
+
+script:
+- docker-compose up
