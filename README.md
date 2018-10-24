@@ -3,6 +3,8 @@ Docker image with php, apache and certbot. Based on webdevops/php-apache
 
 Docker hub : [monkeycompany/php-apache-certbot](https://hub.docker.com/r/monkeycompany/php-apache-certbot/)
 
+Framagit project : [monkey-company/php-apache-certbot](https://framagit.org/monkey-company/php-apache-certbot)
+
 Github project : [monkey-company/php-apache-certbot](https://github.com/monkey-company/php-apache-certbot)
 
 ## Global check
