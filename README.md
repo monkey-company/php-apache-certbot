@@ -24,6 +24,7 @@ Github project : [monkey-company/php-apache-certbot](https://github.com/monkey-c
 - DOMAINS : ```domain.tld```
 - EMAIL : ``` admin@domain.tld ```
 - SHFILE : ``` /opt/docker/etc/httpd/file.sh ```
+- PAGESPEED : ``` false ```
 
 # Volumes
 - Certificates : ```/etc/letsencrypt/```
@@ -53,6 +54,7 @@ php-apache-certbot:
   environment:
     DOMAINS: 'example.com'
     EMAIL: 'admin@example.com'
+    PAGESPEED: 'true'
   volumes:
     - ${PWD}/gluster/certs/:/etc/letsencrypt/
     - ${PWD}/gluster/conf/:/opt/docker/etc/httpd/
