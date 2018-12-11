@@ -15,5 +15,5 @@ RUN echo "certbot --apache --non-interactive --agree-tos --email $EMAIL --domain
 RUN if [ "${PAGESPEED}" = "true" ] ; then wget https://dl-ssl.google.com/dl/linux/direct/mod-pagespeed-stable_current_amd64.deb && dpkg -i mod-pagespeed-*.deb && sudo apt-get -f install && rm -rf mod-pagespeed-*.deb ; else echo cache disabled ; fi
 RUN apt-get update
 RUN apt-get upgrade -y
-RUN /etc/init.d/apache2 restart
+RUN service apache2 restart
 RUN if [ ! -f "$SHFILE" ] ; then echo file not found ; else chmod +x $SHFILE && $SHFILE ; fi
