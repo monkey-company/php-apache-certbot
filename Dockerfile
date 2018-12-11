@@ -5,7 +5,7 @@ ENV EMAIL="admin@$DOMAINS"
 ENV SHFILE="/opt/docker/etc/httpd/file.sh"
 ENV PAGESPEED="false"
 
-RUN echo "127.0.0.1 localhost.localdomain localhost $DOMAINS" >> /etc/hosts
+RUN hostname $DOMAINS
 RUN apt-get update
 RUN apt-get install software-properties-common -y
 RUN apt-get install sendmail -y
