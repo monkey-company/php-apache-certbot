@@ -9,6 +9,7 @@ RUN hostname $DOMAINS
 RUN apt-get update
 RUN apt-get install software-properties-common -y
 RUN apt-get install sendmail -y
+RUN apt-get install ssmtp -y
 RUN add-apt-repository ppa:certbot/certbot -y
 RUN apt-get update
 RUN apt install python-certbot-apache -y
