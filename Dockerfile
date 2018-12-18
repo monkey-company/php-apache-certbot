@@ -5,11 +5,11 @@ ENV EMAIL="admin@$DOMAINS"
 ENV SHFILE="/opt/docker/etc/httpd/file.sh"
 ENV PAGESPEED="false"
 
-RUN echo $(grep $(hostname) /etc/hosts | cut -f1) $DOMAINS >> /etc/hosts && install-software
 RUN apt-get update
 RUN apt-get install software-properties-common -y
 RUN apt-get install sendmail -y
 RUN apt-get install ssmtp -y
+RUN apt-get install install-software -y
 RUN add-apt-repository ppa:certbot/certbot -y
 RUN apt-get update
 RUN apt install python-certbot-apache -y
@@ -19,6 +19,7 @@ RUN if [ "${PAGESPEED}" = "true" ] ; then \
     dpkg -i mod-pagespeed-*.deb \
     sudo apt-get -f install \
     rm -rf mod-pagespeed-*.deb ; else echo cache disabled ; fi
+RUN echo $(grep $(hostname) /etc/hosts | cut -f1) $DOMAINS >> /etc/hosts && install-software
 RUN apt-get update
 RUN apt-get upgrade -y
 RUN service apache2 restart
