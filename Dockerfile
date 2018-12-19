@@ -29,7 +29,8 @@ RUN if [ "$PAGESPEED" = "true" ] ; then \
     fi
 #apache modules
 COPY modules.sh .
-CMD modules.sh
+RUN chmod +x ./modules.sh
+CMD ./modules.sh
 #change host
 RUN echo $(head -1 /etc/hosts | cut -f1) $DOMAINS >> /etc/hosts
 #upgrade to latest packages
