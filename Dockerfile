@@ -23,10 +23,10 @@ RUN if [ "$PAGESPEED" = "true" ] ; then \
     else echo "Without pagespeed" ; \
     fi
 
-RUN if [ ! -z "$MODULES" ] ; then ; \
+RUN if [ ! -z "$MODULES" ] ; then \
     IFS=',' read -a array <<< "$MODULES" ; \
-    for element in "${array[@]}" ; do ; \
-        a2enmod $element ; \
+    for element in "${array[@]}" ; do \
+        a2enmod "$element" ; \
     done ; \
     else echo "Without modules" ; \
     fi
