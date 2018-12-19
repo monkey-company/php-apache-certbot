@@ -28,7 +28,9 @@ RUN if [ "$PAGESPEED" = "true" ] ; then \
     else echo "Without pagespeed" ; \
     fi
 #apache modules
-RUN if [ -z "$MODULES" ]; then echo "Without modules"; else IFS=',' read -a array <<< "$MODULES"; for element in "${array[@]}"; do a2enmod "$element"; done; fi
+COPY modules.sh /modules.sh
+RUN chmod +x /modules.sh
+CMD ["/modules.sh"]
 #change host
 RUN echo $(head -1 /etc/hosts | cut -f1) $DOMAINS >> /etc/hosts
 #upgrade to latest packages
