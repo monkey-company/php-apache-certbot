@@ -1,3 +1,5 @@
+#!/bin/bash
+
 FROM webdevops/php-apache
 
 #variables
