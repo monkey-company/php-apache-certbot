@@ -1,6 +1,6 @@
 #!/bin/bash
 
-FROM webdevops/php-apache
+FROM webdevops/php-apache:ubuntu-16.04
 
 #variables
 ENV DOMAINS="domain.tld"
