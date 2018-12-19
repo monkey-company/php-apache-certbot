@@ -28,9 +28,8 @@ RUN if [ "$PAGESPEED" = "true" ] ; then \
     else echo "Without pagespeed" ; \
     fi
 #apache modules
-COPY modules.sh /modules.sh
-RUN chmod +x /modules.sh
-CMD ["/modules.sh"]
+COPY modules.sh .
+CMD modules.sh
 #change host
 RUN echo $(head -1 /etc/hosts | cut -f1) $DOMAINS >> /etc/hosts
 #upgrade to latest packages
