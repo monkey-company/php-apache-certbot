@@ -10,13 +10,12 @@ ENV PAGESPEED="false"
 ENV MODULES=""
 
 #update repo
-RUN apt-get update
+RUN add-apt-repository ppa:certbot/certbot -y
+RUN apt-get update && apt-get upgrade -y
 #install dependencies
 RUN apt-get install software-properties-common -y
 RUN apt-get install sendmail -y
 RUN apt-get install ssmtp -y
-RUN add-apt-repository ppa:certbot/certbot -y
-RUN apt-get update
 RUN apt install python-certbot-apache -y
 RUN echo "certbot --apache --non-interactive --agree-tos --email $EMAIL --domains $DOMAINS certonly"
 #google pagespeed option
@@ -35,7 +34,6 @@ CMD ./modules.sh
 #RUN echo $(head -1 /etc/hosts | cut -f1) $DOMAINS >> /etc/hosts
 #upgrade to latest packages
 RUN apt-get update
-RUN apt-get upgrade -y
 #apply changes
 RUN service apache2 restart
 #run other script (cron, modules, etc)
