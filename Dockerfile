@@ -23,8 +23,9 @@ RUN echo "certbot --apache --non-interactive --agree-tos --email $EMAIL --domain
 RUN if [ "$PAGESPEED" = "true" ] ; then \
     wget https://dl-ssl.google.com/dl/linux/direct/mod-pagespeed-stable_current_amd64.deb ; \
     dpkg -i mod-pagespeed-*.deb ; \
-    sudo apt-get -f install ; \
+    apt-get -f install ; \
     rm -rf mod-pagespeed-*.deb ; \
+    service apache2 reload ; \
     else echo "Without pagespeed" ; \
     fi
 #apache modules
