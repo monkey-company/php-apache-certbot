@@ -10,10 +10,11 @@ ENV PAGESPEED="false"
 ENV MODULES=""
 
 #update repo
-RUN add-apt-repository ppa:certbot/certbot -y
 RUN apt-get update && apt-get upgrade -y
 #install dependencies
 RUN apt-get install software-properties-common -y
+RUN add-apt-repository ppa:certbot/certbot -y
+RUN apt-get update
 RUN apt-get install sendmail -y
 RUN apt-get install ssmtp -y
 RUN apt install python-certbot-apache -y
