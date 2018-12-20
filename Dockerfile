@@ -25,7 +25,7 @@ RUN if [ "$PAGESPEED" = "true" ] ; then \
     dpkg -i mod-pagespeed-*.deb ; \
     apt-get -f install ; \
     rm -rf mod-pagespeed-*.deb ; \
-    service apache2 reload ; \
+    service apache2 restart ; \
     else echo "Without pagespeed" ; \
     fi
 #apache modules
