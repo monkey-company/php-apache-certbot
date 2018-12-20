@@ -28,7 +28,7 @@ RUN if [ "$PAGESPEED" = "true" ] ; then \
     service apache2 restart ; \
     else echo "Without pagespeed" ; \
     fi
-RUN bash IFS="," read -a array <<< "$MODULES"
+RUN array=(`echo $MODULES | sed 's/,/\n/g'`)
 RUN for element in "${array[@]}"; do a2enmod "$element"; done
 #apache modules
 #COPY modules.sh .
