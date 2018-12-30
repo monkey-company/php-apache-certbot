@@ -7,7 +7,7 @@ php-apache-certbot:
     DOMAINS: 'example.com'
     EMAIL: 'admin@example.com'
     PAGESPEED: 'true'
-    MODULES: 'cache,cache_disk,cache_socache'
+    MODULES: 'http2,cache'
   volumes:
     - ${PWD}/gluster/certs/:/etc/letsencrypt/
     - ${PWD}/gluster/conf/:/opt/docker/etc/httpd/
