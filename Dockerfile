@@ -7,7 +7,7 @@ RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 ENV DOMAINS="domain.tld"
 ENV EMAIL="admin@$DOMAINS"
 ENV SHFILE="/opt/docker/etc/httpd/file.sh"
-ENV PAGESPEED="false"
+ENV PAGESPEED="true"
 ENV MODULES=""
 
 #update repo
@@ -21,9 +21,9 @@ RUN apt-get install ssmtp -y
 RUN apt install python-certbot-apache -y
 RUN echo "certbot --apache --non-interactive --agree-tos --email $EMAIL --domains $DOMAINS certonly"
 #google pagespeed option
-RUN if [ "$PAGESPEED" = "true" ] ; then \
-    wget https://dl-ssl.google.com/dl/linux/direct/mod-pagespeed-stable_current_amd64.deb \
-    && dpkg -i mod-pagespeed-*.deb ; \
+RUN if [ "$PAGESPEED" = "true" ] ; then
+ADD https://dl-ssl.google.com/dl/linux/direct/mod-pagespeed-stable_current_amd64.deb
+RUN dpkg -i mod-pagespeed-*.deb ; \
     apt-get -f install ; \
     rm -rf mod-pagespeed-*.deb ; \
     service apache2 restart ; \
