@@ -1,6 +1,7 @@
 #!/bin/bash
 
 FROM webdevops/php-apache:ubuntu-16.04
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
 #variables
 ENV DOMAINS="domain.tld"
@@ -28,15 +29,7 @@ RUN if [ "$PAGESPEED" = "true" ] ; then \
     service apache2 restart ; \
     else echo "Without pagespeed" ; \
     fi
-RUN array=`echo $MODULES | sed 's/,/\n/g'`
-RUN for element in "${array[@]}"; do a2enmod "$element"; done
-#apache modules
-#COPY modules.sh .
-#RUN chmod +x ./modules.sh
-#CMD ./modules.sh
-#change host
-#RUN echo $(head -1 /etc/hosts | cut -f1) $DOMAINS >> /etc/hosts
-
+RUN echo $MODULES | sed 's/,/ /g' | a2enmod
 #apply changes
 RUN service apache2 restart
 #run other script (cron, modules, etc)
