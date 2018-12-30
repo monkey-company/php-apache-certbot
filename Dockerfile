@@ -22,8 +22,8 @@ RUN apt install python-certbot-apache -y
 RUN echo "certbot --apache --non-interactive --agree-tos --email $EMAIL --domains $DOMAINS certonly"
 #google pagespeed option
 RUN if [ "$PAGESPEED" = "true" ] ; then \
-    wget https://dl-ssl.google.com/dl/linux/direct/mod-pagespeed-stable_current_amd64.deb ; \
-    dpkg -i mod-pagespeed-*.deb ; \
+    wget https://dl-ssl.google.com/dl/linux/direct/mod-pagespeed-stable_current_amd64.deb \
+    && dpkg -i mod-pagespeed-*.deb ; \
     apt-get -f install ; \
     rm -rf mod-pagespeed-*.deb ; \
     service apache2 restart ; \
