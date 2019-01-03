@@ -35,3 +35,5 @@ RUN chmod +x /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["run"]
+
+RUN echo "Finished !"
