@@ -29,8 +29,9 @@ RUN if [ "$PAGESPEED" = "true" ] ; then \
     service apache2 restart ; \
     else echo "Without pagespeed" ; \
     fi
-RUN echo $MODULES | sed 's/,/ /g' | a2enmod
-#apply changes
-RUN service apache2 restart
-#run other script (cron, modules, etc)
-RUN if [ ! -f "$SHFILE" ] ; then echo file not found ; else chmod +x $SHFILE && $SHFILE ; fi
+
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["run"]
