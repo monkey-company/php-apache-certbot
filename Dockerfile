@@ -37,6 +37,7 @@ ENTRYPOINT ["/entrypoint.sh"]
 CMD ["run"]
 
 #apply changes
+RUN service supervisor start
 RUN service apache2 restart
 
 RUN echo "Finished !"
