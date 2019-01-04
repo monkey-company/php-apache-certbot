@@ -33,8 +33,7 @@ RUN if [ "$PAGESPEED" = "true" ] ; then \
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
-#ENTRYPOINT ["/entrypoint.sh"]
-#CMD ["run"]
+RUN /entrypoint.sh
 
 #apply changes
 RUN service apache2 restart
