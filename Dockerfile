@@ -34,10 +34,9 @@ COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
-CMD ["run"]
+//CMD ["run"]
 
 #apply changes
-RUN service supervisor start
-RUN service apache2 restart
+RUN systemctl restart apache2
 
 RUN echo "Finished !"
