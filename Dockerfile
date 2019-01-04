@@ -36,4 +36,7 @@ RUN chmod +x /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["run"]
 
+#apply changes
+RUN service apache2 restart
+
 RUN echo "Finished !"
