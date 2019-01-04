@@ -37,6 +37,6 @@ ENTRYPOINT ["/entrypoint.sh"]
 #CMD ["run"]
 
 #apply changes
-RUN systemctl restart apache2
+RUN service apache2 restart
 
 RUN echo "Finished !"
