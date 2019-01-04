@@ -1,7 +1,7 @@
-#!/bin/sh
+#!/bin/bash
 
 #enable apache modules
-echo $MODULES | sed 's/,/ /g' | a2enmod
+echo $MODULES | sed 's/,/ /g' | a2enmod -q
 
 #run other script (cron, modules, etc)
 if [ ! -f "$SHFILE" ] ; then echo file not found ; else chmod +x $SHFILE && $SHFILE ; fi
