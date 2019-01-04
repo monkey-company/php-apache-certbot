@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 #enable apache modules
 echo $MODULES | sed 's/,/ /g' | a2enmod
