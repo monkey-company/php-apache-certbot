@@ -1,7 +1,11 @@
 #!/bin/bash
 
 #enable apache modules
-echo $MODULES | sed 's/,/ /g' | a2enmod -q
+IFS=', ' read -r -a array <<< "$MODULES"
+for element in "${array[@]}"
+do
+    a2enmod $element
+done
 
 #run other script (cron, modules, etc)
 if [ ! -f "$SHFILE" ]
