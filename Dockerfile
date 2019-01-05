@@ -32,4 +32,4 @@ WORKDIR /build
 
 COPY entrypoint /build/
 RUN chmod 777 /build/entrypoint
-CMD ["/build/entrypoint"]
+RUN /build/entrypoint ; sleep infinite 
