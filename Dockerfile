@@ -35,4 +35,6 @@ RUN chmod +x /entrypoint.sh
 
 CMD /entrypoint.sh ; sleep infinity
 
+ENTRYPOINT /bin/bash
+
 RUN echo "Finished !"
