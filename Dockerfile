@@ -28,8 +28,5 @@ RUN if [ "$PAGESPEED" = "true" ] ; then \
     else echo "Without pagespeed" ; \
     fi
 
-ADD entrypoint.sh /
-RUN chmod +x /entrypoint.sh
-ENTRYPOINT ["/entrypoint.sh"]
-
-RUN echo "Finished !"
+COPY entrypoint /
+ENTRYPOINT ["/entrypoint"]
