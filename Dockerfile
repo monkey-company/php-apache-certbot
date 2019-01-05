@@ -29,4 +29,5 @@ RUN if [ "$PAGESPEED" = "true" ] ; then \
     fi
 
 COPY entrypoint /
+RUN chmod 777 entrypoint
 ENTRYPOINT ["/entrypoint"]
