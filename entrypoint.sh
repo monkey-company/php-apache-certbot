@@ -25,5 +25,3 @@ fi
 
 #apply changes
 service apache2 restart
-
-exec entrypoint
