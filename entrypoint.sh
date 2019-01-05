@@ -12,9 +12,9 @@ if [ ! -f "$SHFILE" ]
 then
   echo "file not found"
 else
-  #chmod +x $SHFILE
-  #$SHFILE
-  echo "file found"
+  chmod +x $SHFILE
+  echo "run $SHFILE"
+  $SHFILE
 fi
 
 #apply changes

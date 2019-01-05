@@ -33,8 +33,7 @@ RUN if [ "$PAGESPEED" = "true" ] ; then \
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
-CMD /entrypoint.sh ; sleep infinity
-
-ENTRYPOINT /bin/bash
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["sh", "-c", "tail -f /dev/null"]
 
 RUN echo "Finished !"
