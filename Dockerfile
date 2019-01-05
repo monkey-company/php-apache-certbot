@@ -34,6 +34,6 @@ COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
-CMD ["sh", "-c", "tail -f /dev/null"]
+CMD ["; sleep infinity"]
 
 RUN echo "Finished !"
