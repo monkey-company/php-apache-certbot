@@ -33,6 +33,6 @@ RUN if [ "$PAGESPEED" = "true" ] ; then \
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
-CMD [/entrypoint.sh]
+CMD /entrypoint.sh
 
 RUN echo "Finished !"
