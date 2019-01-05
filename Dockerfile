@@ -1,5 +1,3 @@
-#!/bin/bash
-
 FROM webdevops/php-apache:ubuntu-16.04
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
@@ -32,6 +30,7 @@ RUN if [ "$PAGESPEED" = "true" ] ; then \
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
-ENTRYPOINT ["/entrypoint.sh ; sleep infinity"]
+ENTRYPOINT ["/entrypoint.sh"]
+CMD []
 
 RUN echo "Finished !"
