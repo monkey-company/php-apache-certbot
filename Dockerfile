@@ -28,6 +28,8 @@ RUN if [ "$PAGESPEED" = "true" ] ; then \
     else echo "Without pagespeed" ; \
     fi
 
-COPY entrypoint /
-RUN chmod 777 entrypoint
-ENTRYPOINT ["/entrypoint"]
+WORKDIR /build
+
+COPY entrypoint /build/
+RUN chmod 777 /build/entrypoint
+CMD ["/build/entrypoint"]
