@@ -32,8 +32,6 @@ RUN if [ "$PAGESPEED" = "true" ] ; then \
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
-
-ENTRYPOINT ["/entrypoint.sh"]
-CMD exec /bin/bash -c "trap : TERM INT; sleep infinity & wait"
+ENTRYPOINT ["/entrypoint.sh ; sleep infinity"]
 
 RUN echo "Finished !"
