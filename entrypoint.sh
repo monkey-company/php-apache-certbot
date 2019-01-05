@@ -12,6 +12,10 @@ if [ ! -f "$SHFILE" ]
 then
   echo "file not found"
 else
-  chmod +x $SHFILE
-  $SHFILE
+  #chmod +x $SHFILE
+  #$SHFILE
+  echo "file found"
 fi
+
+#apply changes
+service apache2 restart
