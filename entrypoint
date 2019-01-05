@@ -25,3 +25,5 @@ fi
 
 #apply changes
 service apache2 restart
+
+exit
