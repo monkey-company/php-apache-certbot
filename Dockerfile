@@ -1,3 +1,4 @@
+#!/bin/bash
 FROM webdevops/php-apache:ubuntu-16.04
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
@@ -32,4 +33,4 @@ WORKDIR /build
 
 COPY entrypoint /build/
 RUN chmod 777 /build/entrypoint
-RUN /build/entrypoint ; exit
+RUN /build/entrypoint && exit
