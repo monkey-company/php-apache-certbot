@@ -31,7 +31,7 @@ RUN if [ "$PAGESPEED" = "true" ] ; then \
 
 WORKDIR /build
 
-COPY ./entrypoint-custom /
-RUN chmod +x /entrypoint-custom
-ENTRYPOINT ["/entrypoint-custom"]
+COPY ./entrypoint-custom /build
+RUN chmod +x /build/entrypoint-custom
+ENTRYPOINT ["/build/entrypoint-custom"]
 CMD ["run"]
