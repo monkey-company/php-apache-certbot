@@ -35,3 +35,4 @@ COPY ./entrypoint-custom /
 RUN chmod +x /entrypoint-custom
 ENTRYPOINT ["/entrypoint-custom"]
 CMD ["run"]
+CMD exec /bin/bash -c "trap : TERM INT; sleep infinity & wait"
