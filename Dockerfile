@@ -11,6 +11,8 @@ ENV SHFILE="/opt/docker/etc/httpd/file.sh"
 ENV PAGESPEED="true"
 ENV MODULES=""
 
+#set timezone
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 #update repo
 RUN apt-get update && apt-get upgrade -y
 #install dependencies
