@@ -24,7 +24,7 @@ RUN apt-get install apache2 -y
 RUN service apache2 start
 #install php
 RUN apt-get install php -y
-RUN apt-get install php-{bcmath,$APAMOD} -y
+RUN apt-get install php-{bcmath,$PHPMOD} -y
 RUN apt-get install libapache2-mod-php -y
 RUN add-apt-repository ppa:certbot/certbot -y
 RUN apt-get update
