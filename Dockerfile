@@ -10,7 +10,7 @@ ENV EMAIL="admin@$DOMAINS"
 ENV SHFILE="/opt/docker/etc/httpd/file.sh"
 ENV PAGESPEED="true"
 ENV APAMOD="rewrite"
-ENV PHPMOD="bz2,intl,gd,mbstring,mysql,zip,pear"
+ENV PHPMOD="bcmath,bz2,intl,gd,mbstring,mysql,zip"
 ENV PEAMOD="xdiff"
 
 #set timezone
@@ -24,7 +24,7 @@ RUN apt-get install apache2 -y
 RUN service apache2 start
 #install php
 RUN apt-get install php -y
-RUN apt-get install php-{bcmath,$PHPMOD} -y
+RUN apt-get install php-pear -y
 RUN apt-get install libapache2-mod-php -y
 RUN add-apt-repository ppa:certbot/certbot -y
 RUN apt-get update

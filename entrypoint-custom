@@ -3,14 +3,21 @@ set -e
 
 if [ "$1" = 'run' ]; then
   #enable apache modules
-  IFS=', ' read -r -a array <<< "$APAMOD"
+  IFS=', ' read -r -a apaarr <<< "$APAMOD"
   for apael in "${apaarr[@]}"
   do
       a2enmod $apael
   done
 
+  #install php mods
+  IFS=', ' read -r -a phparr <<< "$PHPMOD"
+  for phpel in "${phparr[@]}"
+  do
+      apt-get install php-$phpel -y
+  done
+
   #install pecl mods
-  IFS=', ' read -r -a array2 <<< "$PEAMOD"
+  IFS=', ' read -r -a peaarr <<< "$PEAMOD"
   for peael in "${peaarr[@]}"
   do
       printf "\n" | pecl install $peael
