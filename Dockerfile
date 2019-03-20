@@ -18,7 +18,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 #update repo
 RUN apt-get update && apt-get upgrade -y
 #install dependencies
-RUN apt-get install software-properties-common apt-utils -y
+RUN apt-get install software-properties-common apt-utils wget -y
 #install apache
 RUN apt-get install apache2 -y
 RUN service apache2 start
