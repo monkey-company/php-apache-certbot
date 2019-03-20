@@ -15,9 +15,10 @@ RUN apt-get update && apt-get upgrade -y
 RUN apt-get install software-properties-common apt-utils -y
 RUN apt-get install apache2 -y
 RUN service apache2 start
-RUN apt-get install php-curl php-gd php-intl php-json php-mbstring php-xml php-zip -y
-RUN a2enmod php7.2
 RUN apt-get install php -y
+RUN apt-get install php-{bcmath,bz2,intl,gd,mbstring,mcrypt,mysql,zip} -y
+RUN apt-get install libapache2-mod-php -y
+RUN a2enmod rewrite
 RUN add-apt-repository ppa:certbot/certbot -y
 RUN apt-get update
 RUN apt-get install sendmail -y
