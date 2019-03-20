@@ -3,10 +3,17 @@ set -e
 
 if [ "$1" = 'run' ]; then
   #enable apache modules
-  IFS=', ' read -r -a array <<< "$MODULES"
+  IFS=', ' read -r -a array <<< "$APAMOD"
   for element in "${array[@]}"
   do
       a2enmod $element
+  done
+
+  #install pecl mods
+  IFS=', ' read -r -a array <<< "$PEAMOD"
+  for element in "${array[@]}"
+  do
+      printf "\n" | pecl install $element
   done
 
   #run other script (cron, modules, etc)

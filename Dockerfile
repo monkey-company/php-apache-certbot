@@ -9,7 +9,9 @@ ENV DOMAINS="domain.tld"
 ENV EMAIL="admin@$DOMAINS"
 ENV SHFILE="/opt/docker/etc/httpd/file.sh"
 ENV PAGESPEED="true"
-ENV MODULES=""
+ENV APAMOD="rewrite"
+ENV PHPMOD="bz2,intl,gd,mbstring,mysql,zip,pear"
+ENV PEAMOD="xdiff"
 
 #set timezone
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
@@ -17,12 +19,13 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN apt-get update && apt-get upgrade -y
 #install dependencies
 RUN apt-get install software-properties-common apt-utils -y
+#install apache
 RUN apt-get install apache2 -y
 RUN service apache2 start
+#install php
 RUN apt-get install php -y
-RUN apt-get install php-{bcmath,bz2,intl,gd,mbstring,mcrypt,mysql,zip} -y
+RUN apt-get install php-{bcmath,$APAMOD} -y
 RUN apt-get install libapache2-mod-php -y
-RUN a2enmod rewrite
 RUN add-apt-repository ppa:certbot/certbot -y
 RUN apt-get update
 RUN apt-get install sendmail -y
