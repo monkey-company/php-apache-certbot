@@ -1,5 +1,5 @@
 ### php-apache-certbot
-Docker image with php, apache and certbot. Based on webdevops/php-apache
+Docker image with php, apache and certbot. Based on ubuntu:bionic
 
 Docker hub : [monkeycompany/php-apache-certbot](https://hub.docker.com/r/monkeycompany/php-apache-certbot/)
 

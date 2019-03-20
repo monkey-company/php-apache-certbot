@@ -1,5 +1,5 @@
 #!/bin/bash
-FROM webdevops/php-apache:ubuntu-16.04
+FROM ubuntu:bionic
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
 #variables
@@ -13,6 +13,11 @@ ENV MODULES=""
 RUN apt-get update && apt-get upgrade -y
 #install dependencies
 RUN apt-get install software-properties-common -y
+RUN apt-get install apache2 -y
+RUN systemctl start apache2.service
+RUN apt-get install php-curl php-gd php-intl php-json php-mbstring php-xml php-zip -y
+RUN a2enmod php7.2
+RUN apt-get install php -y
 RUN add-apt-repository ppa:certbot/certbot -y
 RUN apt-get update
 RUN apt-get install sendmail -y
