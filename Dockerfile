@@ -12,9 +12,9 @@ ENV MODULES=""
 #update repo
 RUN apt-get update && apt-get upgrade -y
 #install dependencies
-RUN apt-get install software-properties-common -y
+RUN apt-get install software-properties-common apt-utils -y
 RUN apt-get install apache2 -y
-RUN systemctl start apache2.service
+RUN service apache2 start
 RUN apt-get install php-curl php-gd php-intl php-json php-mbstring php-xml php-zip -y
 RUN a2enmod php7.2
 RUN apt-get install php -y
