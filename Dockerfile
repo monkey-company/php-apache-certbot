@@ -11,7 +11,7 @@ ENV SHFILE="/opt/docker/etc/httpd/file.sh"
 ENV PAGESPEED="true"
 ENV APAMOD="rewrite"
 ENV PHPMOD="bcmath,bz2,intl,gd,mbstring,mysql,zip"
-ENV PEAMOD="xdiff"
+ENV PEAMOD="xdiff-beta"
 
 #set timezone
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
