@@ -2,6 +2,13 @@
 set -e
 
 if [ "$1" = 'run' ]; then
+  #install additionnal dependencies
+  IFS=',' read -r -a phparr <<< "$LIBMOD"
+  for libel in "${libarr[@]}"
+  do
+      apt-get install $libel -y
+  done
+
   #enable apache modules
   IFS=',' read -r -a apaarr <<< "$APAMOD"
   for apael in "${apaarr[@]}"
