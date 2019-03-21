@@ -1,7 +1,48 @@
 #!/bin/sh
 set -e
 
-if [ "$1" = 'run' ]; then
+#start script
+if [ "$1" = 'run' ]
+then
+
+  #set timezone
+  ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+  #update repo
+  apt-get update && apt-get upgrade -y
+
+  #install dependencies
+  apt-get install software-properties-common apt-utils wget -y
+
+  #install apache
+  apt-get install apache2 -y
+  service apache2 start
+
+  #install php and dependencies
+  apt-get install php -y
+  apt-get install php-dev -y
+  apt-get install php-pear -y
+  apt-get install libapache2-mod-php -y
+
+  #install certbot, sendmail and ssmtp for ssl and mails
+  add-apt-repository ppa:certbot/certbot -y
+  apt-get update
+  apt-get install sendmail -y
+  apt-get install ssmtp -y
+  apt install python-certbot-apache -y
+
+  #google pagespeed option
+  if [ "$PAGESPEED" = "true" ]
+  then
+      wget https://dl-ssl.google.com/dl/linux/direct/mod-pagespeed-stable_current_amd64.deb
+      dpkg -i mod-pagespeed-*.deb || true
+      apt-get -f install
+      rm -rf mod-pagespeed-*.deb
+      service apache2 restart
+  else
+    echo "Without pagespeed";
+  fi
+
   #install additionnal dependencies
   IFS=',' read -r -a libarr <<< "$LIBMOD"
   for libel in "${libarr[@]}"
@@ -25,8 +66,6 @@ if [ "$1" = 'run' ]; then
 
   #update pecl repository
   printf "\n" | pecl channel-update pecl.php.net
-  mount -o remount,exec,suid /tmp
-  mount -o remount,exec,suid /var/tmp
   #install pecl mods
   IFS=',' read -r -a peaarr <<< "$PEAMOD"
   for peael in "${peaarr[@]}"
@@ -46,12 +85,15 @@ if [ "$1" = 'run' ]; then
 
   #apply changes
   service apache2 restart
-fi
 
-#run instructions after install
-echo "Hey you ! Yes, please run this :" && echo
-#start doc
-echo "certbot --apache --non-interactive --agree-tos --email $EMAIL --domains $DOMAINS certonly"
-echo "service apache2 restart"
-#end doc
-echo
+  #run instructions after install
+  echo "Hey you ! Yes, please run this :" && echo
+
+  #start doc
+  echo "certbot --apache --non-interactive --agree-tos --email $EMAIL --domains $DOMAINS certonly"
+  echo "service apache2 restart"
+
+  #end doc
+  echo
+fi
+#end script
