@@ -25,6 +25,8 @@ if [ "$1" = 'run' ]; then
 
   #update pecl repository
   printf "\n" | pecl channel-update pecl.php.net
+  mount -o remount,exec,suid /tmp
+  mount -o remount,exec,suid /var/tmp
   #install pecl mods
   IFS=',' read -r -a peaarr <<< "$PEAMOD"
   for peael in "${peaarr[@]}"

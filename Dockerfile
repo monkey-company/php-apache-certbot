@@ -42,7 +42,7 @@ RUN if [ "$PAGESPEED" = "true" ] ; then \
     rm -rf mod-pagespeed-*.deb ; \
     service apache2 restart ; \
     else echo "Without pagespeed" ; \
-    fi
+fi
 
 WORKDIR /
 
