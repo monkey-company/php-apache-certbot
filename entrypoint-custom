@@ -3,7 +3,7 @@ set -e
 
 if [ "$1" = 'run' ]; then
   #install additionnal dependencies
-  IFS=',' read -r -a phparr <<< "$LIBMOD"
+  IFS=',' read -r -a libarr <<< "$LIBMOD"
   for libel in "${libarr[@]}"
   do
       apt-get install $libel -y
