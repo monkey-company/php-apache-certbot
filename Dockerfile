@@ -24,6 +24,7 @@ RUN apt-get install apache2 -y
 RUN service apache2 start
 #install php
 RUN apt-get install php -y
+RUN apt-get install php-dev -y
 RUN apt-get install php-pear -y
 RUN apt-get install libapache2-mod-php -y
 RUN add-apt-repository ppa:certbot/certbot -y
