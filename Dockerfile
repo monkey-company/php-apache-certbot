@@ -16,7 +16,9 @@ ENV PEAMOD="xdiff-beta"
 
 WORKDIR /
 
+COPY ./scripts /scripts
 COPY ./entrypoint-custom /
 RUN chmod +x /entrypoint-custom
+RUN chmod +x /scripts/*
 ENTRYPOINT ["/entrypoint-custom"]
 CMD ["run"]

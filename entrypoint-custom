@@ -5,40 +5,12 @@ set -e
 if [ "$1" = 'run' ]
 then
 
-  #set timezone
-  ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
-
-  #update repo
-  apt-get update && apt-get upgrade -y
-
-  #install dependencies
-  apt-get install software-properties-common apt-utils wget -y
-
-  #install apache
-  apt-get install apache2 -y
-  service apache2 start
-
-  #install php and dependencies
-  apt-get install php -y
-  apt-get install php-dev -y
-  apt-get install php-pear -y
-  apt-get install libapache2-mod-php -y
-
-  #install certbot, sendmail and ssmtp for ssl and mails
-  add-apt-repository ppa:certbot/certbot -y
-  apt-get update
-  apt-get install sendmail -y
-  apt-get install ssmtp -y
-  apt install python-certbot-apache -y
+  sh /scripts/init.sh
 
   #google pagespeed option
   if [ "$PAGESPEED" = "true" ]
   then
-      wget https://dl-ssl.google.com/dl/linux/direct/mod-pagespeed-stable_current_amd64.deb
-      dpkg -i mod-pagespeed-*.deb || true
-      apt-get -f install
-      rm -rf mod-pagespeed-*.deb
-      service apache2 restart
+    sh /scripts/pagespeed.sh
   else
     echo "Without pagespeed";
   fi
@@ -64,6 +36,8 @@ then
       apt-get install php-$phpel -y
   done
 
+  sh /scripts/before-pecl.sh
+
   #update pecl repository
   printf "\n" | pecl channel-update pecl.php.net
   #install pecl mods
@@ -86,14 +60,7 @@ then
   #apply changes
   service apache2 restart
 
-  #run instructions after install
-  echo "Hey you ! Yes, please run this :" && echo
-
-  #start doc
-  echo "certbot --apache --non-interactive --agree-tos --email $EMAIL --domains $DOMAINS certonly"
-  echo "service apache2 restart"
-
-  #end doc
-  echo
+  #documentation
+  sh /scripts/doc.sh
 fi
 #end script
