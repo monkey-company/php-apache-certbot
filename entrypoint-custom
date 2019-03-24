@@ -61,6 +61,6 @@ then
   service apache2 restart
 
   #documentation
-  sh /scripts/doc.sh
+  #sh /scripts/doc.sh
 fi
 #end script
