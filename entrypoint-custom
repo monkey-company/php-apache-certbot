@@ -61,8 +61,14 @@ then
   echo "ServerName 0.0.0.0" >> /etc/apache2/apache2.conf
 
   #apply changes
-  #service apache2 restart
+  service apache2 restart
 
+  echo "Apache log :"
+
+  tail -n 3 -f /var/log/apache2/* | grep --line-buffered '.*' | while read LINE0
+  do
+      echo "${LINE0}";
+  done
   #documentation
   #sh /scripts/doc.sh
 fi
