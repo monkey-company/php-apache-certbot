@@ -58,7 +58,7 @@ then
   fi
 
   #set fqdn
-  echo "ServerName \"$DOMAIN\"" >> /etc/apache2/apache2.conf
+  echo "ServerName 0.0.0.0" >> /etc/apache2/apache2.conf
 
   #apply changes
   service apache2 restart
