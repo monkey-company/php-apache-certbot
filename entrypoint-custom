@@ -58,12 +58,7 @@ then
   fi
 
   #set fqdn
-  if [ "$DOMAINS" != "domain.tld" ]
-  then
-    echo 'ServerName localhost' | tee /etc/apache2/apache2.conf
-  else
-    echo "ServerName \"$DOMAINS\"" | tee /etc/apache2/apache2.conf
-  fi
+  echo "ServerName \"$DOMAIN\"" >> /etc/apache2/apache2.conf
 
   #apply changes
   service apache2 restart
