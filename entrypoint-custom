@@ -57,6 +57,14 @@ then
     $SHFILE
   fi
 
+  #set fqdn 
+  if [ "$DOMAINS" != "domain.tld" ]
+  then
+    echo 'ServerName localhost' | sudo tee /etc/apache2/apache2.conf
+  else
+    echo "ServerName \"$DOMAINS\"" | sudo tee /etc/apache2/apache2.conf
+  fi
+
   #apply changes
   service apache2 restart
 
