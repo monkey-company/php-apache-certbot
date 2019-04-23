@@ -8,7 +8,7 @@ php-apache-certbot:
     EMAIL: 'admin@example.com'
     PAGESPEED: 'true'
     LIBMOD: 're2c'
-    APAMOD: 'cache,rewrite,ssl'
+    APAMOD: 'cache,rewrite,ssl,headers'
     APDMOD: 'autoindex'
     PHPMOD: 'bcmath,bz2,intl,gd,mbstring,mysql,zip'
     PEAMOD: 'xdiff'

@@ -28,7 +28,7 @@ Github project : [monkey-company/php-apache-certbot](https://github.com/monkey-c
 - SHFILE : ``` /etc/apache2/file.sh ``` additionnal script for cron or other
 - PAGESPEED : ``` false ``` install google pagespeed module apache
 - LIBMOD : ``` re2c ``` additionnal dependencies
-- APAMOD : ``` cache,rewrite,ssl ``` apache2 modules
+- APAMOD : ``` cache,rewrite,ssl,headers ``` apache2 modules
 - ADPMOD : ``` autoindex ``` apache2 disable modules
 - PHPMOD : ``` bcmath,bz2,intl,gd,mbstring,mysql,zip ``` php modules
 - PEAMOD : ``` xdiff ``` pear packages
@@ -64,7 +64,7 @@ php-apache-certbot:
     EMAIL: 'admin@example.com'
     PAGESPEED: 'true'
     LIBMOD: 're2c'
-    APAMOD: 'cache,rewrite,ssl'
+    APAMOD: 'cache,rewrite,ssl,headers'
     APDMOD: 'autoindex'
     PHPMOD: 'bcmath,bz2,intl,gd,mbstring,mysql,zip'
     PEAMOD: 'xdiff'
