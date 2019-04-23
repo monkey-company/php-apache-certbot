@@ -11,6 +11,8 @@ apt-get install software-properties-common apt-utils wget -y
 
 #install apache
 apt-get install apache2 -y
+service apache2 start
+service apache2 stop
 
 #install php and dependencies
 apt-get install php -y
