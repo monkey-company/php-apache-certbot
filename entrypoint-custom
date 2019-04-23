@@ -33,7 +33,7 @@ then
   IFS=',' read -r -a apdarr <<< "$APDMOD"
   for apdel in "${apdarr[@]}"
   do
-      a2dismod $apdel
+      a2dismod -f $apdel
   done
 
   #install php mods
@@ -68,7 +68,7 @@ then
   echo "ServerName 0.0.0.0" >> /etc/apache2/apache2.conf
 
   #apply changes
-  service apache2 restart
+  service apache2 start
 
   #documentation
   sh /scripts/doc.sh
