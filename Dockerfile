@@ -1,6 +1,6 @@
 #!/bin/bash
 FROM ubuntu:bionic
-RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+#RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
 #variables
 ENV DEBIAN_FRONTEND="noninteractive" \

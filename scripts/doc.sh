@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 #run instructions after install
 echo "Hey you ! Yes, please run this :" && echo

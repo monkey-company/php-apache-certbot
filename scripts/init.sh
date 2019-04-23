@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 #set timezone
 ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
