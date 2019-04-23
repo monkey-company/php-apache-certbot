@@ -29,6 +29,13 @@ then
       a2enmod $apael
   done
 
+  #disable apache modules
+  IFS=',' read -r -a apdarr <<< "$APDMOD"
+  for apdel in "${apdarr[@]}"
+  do
+      a2dismod $apdel
+  done
+
   #install php mods
   IFS=',' read -r -a phparr <<< "$PHPMOD"
   for phpel in "${phparr[@]}"
@@ -63,13 +70,14 @@ then
   #apply changes
   service apache2 restart
 
+  #documentation
+  sh /scripts/doc.sh
+
   echo "Apache log :"
 
   tail -n 3 -f /var/log/apache2/* | grep --line-buffered '.*' | while read LINE0
   do
       echo "${LINE0}";
   done
-  #documentation
-  #sh /scripts/doc.sh
 fi
 #end script

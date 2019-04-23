@@ -1,5 +1,5 @@
 ### php-apache-certbot
-Docker image with php, apache and certbot. Based on ubuntu:bionic
+Docker image with php, pear, xdiff, pagespeed, apache and certbot. Based on ubuntu:bionic
 
 Docker hub : [monkeycompany/php-apache-certbot](https://hub.docker.com/r/monkeycompany/php-apache-certbot/)
 
@@ -22,19 +22,22 @@ Github project : [monkey-company/php-apache-certbot](https://github.com/monkey-c
 
 # Variables
 
-- DOMAINS : ```domain.tld```
-- EMAIL : ``` admin@domain.tld ```
-- SHFILE : ``` /opt/docker/etc/httpd/file.sh ```
-- PAGESPEED : ``` false ```
-- LIBMOD : ``` re2c ```
-- APAMOD : ``` cache,rewrite ```
-- PHPMOD : ``` bcmath,bz2,intl,gd,mbstring,mysql,zip ```
-- PEAMOD : ``` xdiff ```
+- DOMAIN : ```localhost``` domain for let's encrypt
+- EMAIL : ``` admin@localhost ``` email for let's encrypt
+- TZ : ``` Europe/Paris ``` timezone
+- SHFILE : ``` /etc/apache2/file.sh ``` additionnal script for cron or other
+- PAGESPEED : ``` false ``` install google pagespeed module apache
+- LIBMOD : ``` re2c ``` additionnal dependencies
+- APAMOD : ``` cache,rewrite ``` apache2 modules
+- ADPMOD : ``` autoindex ``` apache2 disable modules
+- PHPMOD : ``` bcmath,bz2,intl,gd,mbstring,mysql,zip ``` php modules
+- PEAMOD : ``` xdiff ``` pear packages
 
 # Volumes
-- Certificates : ```/etc/letsencrypt/```
-- Apache configuration : ```/opt/docker/etc/httpd/```
-- Apache webroot : ```/app/```
+- Let's encrypt configuration : ```/etc/letsencrypt/```
+- Apache configuration : ```/etc/apache2/```
+- PHP configuration : ```/etc/php/```
+- Apache webroot : ```/var/www/html/```
 
 # Port
 - HTTP : ```80```
@@ -44,7 +47,7 @@ Github project : [monkey-company/php-apache-certbot](https://github.com/monkey-c
 
 # Quick start
 
-Run the ```docker run -d --restart=unless-stopped -p 80:80 -p 443:443 -v ${PWD}/gluster/certs/:/etc/letsencrypt/ -v ${PWD}/gluster/conf/:/opt/docker/etc/httpd/ -v ${PWD}/gluster/www/:/app/ -e DOMAINS='example.com' -e EMAIL='admin@example.com' monkeycompany/php-apache-certbot``` command.
+Run the ```docker run -d --restart=unless-stopped -p 80:80 -p 443:443 -v ${PWD}/path/letsencrypt-conf/:/etc/letsencrypt/ -v ${PWD}/path/apache-conf/:/etc/apache2/ -v ${PWD}/path/php-conf/:/etc/apache2/ -v ${PWD}/path/www/:/var/www/html/ -e DOMAINS='example.com' -e EMAIL='admin@example.com' monkeycompany/php-apache-certbot``` command.
 
 # Step one
 
@@ -60,11 +63,17 @@ php-apache-certbot:
     DOMAINS: 'example.com'
     EMAIL: 'admin@example.com'
     PAGESPEED: 'true'
+    LIBMOD: 're2c'
     APAMOD: 'cache,cache_disk,cache_socache'
+    APDMOD: 'autoindex'
+    PHPMOD: 'bcmath,bz2,intl,gd,mbstring,mysql,zip'
+    PEAMOD: 'xdiff'
+
   volumes:
-    - ${PWD}/gluster/certs/:/etc/letsencrypt/
-    - ${PWD}/gluster/conf/:/opt/docker/etc/httpd/
-    - ${PWD}/gluster/www/:/app/
+    - ${PWD}/path/letsencrypt-conf/:/etc/letsencrypt/
+    - ${PWD}/path/apache-conf/:/etc/apache2/
+    - ${PWD}/path/php-conf/:/etc/apache2/
+    - ${PWD}/path/www/:/var/www/html/
 ```
 
 # Step two

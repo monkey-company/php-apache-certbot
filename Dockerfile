@@ -1,18 +1,19 @@
 #!/bin/bash
 FROM ubuntu:bionic
-RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+#RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
 #variables
-ENV DEBIAN_FRONTEND="noninteractive"
-ENV TZ="Europe/Paris"
-ENV DOMAIN="localhost"
-ENV EMAIL="admin@$DOMAIN"
-ENV SHFILE="/opt/docker/etc/httpd/file.sh"
-ENV PAGESPEED="true"
-ENV LIBMOD="re2c"
-ENV APAMOD="cache,rewrite"
-ENV PHPMOD="bcmath,bz2,intl,gd,mbstring,mysql,zip"
-ENV PEAMOD="xdiff-beta"
+ENV DEBIAN_FRONTEND="noninteractive" \
+  	TZ="Europe/Paris" \
+    DOMAIN="localhost" \
+    EMAIL="admin@$DOMAIN" \
+    SHFILE="/etc/apache2/file.sh" \
+    PAGESPEED="true" \
+    LIBMOD="re2c" \
+    APAMOD="cache,rewrite" \
+    APDMOD="autoindex" \
+    PHPMOD="bcmath,bz2,intl,gd,mbstring,mysql,zip" \
+    PEAMOD="xdiff-beta"
 
 WORKDIR /
 
