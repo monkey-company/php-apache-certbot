@@ -36,7 +36,7 @@ RUN apt-get install apache2 -y && \
     #install certbot, sendmail and ssmtp for ssl and mails
     add-apt-repository ppa:certbot/certbot -y && \
     apt-get update && \
-    apt-get install sendmail-bin sendmail ssmtp python-certbot-apache -y
+    apt-get python-certbot-apache -y
 
 COPY ./scripts /scripts
 COPY ./entrypoint-custom /
