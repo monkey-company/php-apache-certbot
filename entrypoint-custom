@@ -5,7 +5,7 @@ set -e
 if [ "$1" = 'run' ]
 then
 
-  sh /scripts/init.sh
+  #sh /scripts/init.sh
 
   #google pagespeed option
   if [ "$PAGESPEED" = "true" ]
