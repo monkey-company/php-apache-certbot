@@ -24,10 +24,10 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone &
     apt-get update && apt-get upgrade -y && \
 
     #install dependencies
-    apt-get install software-properties-common apt-utils wget -y && \
+    apt-get install software-properties-common apt-utils wget -y
 
     #install apache
-    apt-get install apache2 -y && \
+RUN apt-get install apache2 -y && \
     service apache2 stop && \
 
     #install php and dependencies
@@ -36,7 +36,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone &
     #install certbot, sendmail and ssmtp for ssl and mails
     add-apt-repository ppa:certbot/certbot -y && \
     apt-get update && \
-    apt-get install sendmail ssmtp python-certbot-apache -y
+    apt-get install sendmail-bin sendmail ssmtp python-certbot-apache -y
 
 COPY ./scripts /scripts
 COPY ./entrypoint-custom /
