@@ -1,42 +1,25 @@
 #!/bin/bash
-
-FROM webdevops/php-apache:ubuntu-16.04
-RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+FROM ubuntu:bionic
+#RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
 #variables
-ENV DOMAINS="domain.tld"
-ENV EMAIL="admin@$DOMAINS"
-ENV SHFILE="/opt/docker/etc/httpd/file.sh"
-ENV PAGESPEED="true"
-ENV MODULES=""
+ENV DEBIAN_FRONTEND="noninteractive" \
+  	TZ="Europe/Paris" \
+    DOMAIN="localhost" \
+    EMAIL="admin@$DOMAIN" \
+    SHFILE="/etc/apache2/file.sh" \
+    PAGESPEED="true" \
+    LIBMOD="re2c" \
+    APAMOD="cache,rewrite,ssl,headers" \
+    APDMOD="autoindex" \
+    PHPMOD="bcmath,bz2,intl,gd,mbstring,mysql,zip" \
+    PEAMOD="xdiff-beta"
 
-#update repo
-RUN apt-get update && apt-get upgrade -y
-#install dependencies
-RUN apt-get install software-properties-common -y
-RUN add-apt-repository ppa:certbot/certbot -y
-RUN apt-get update
-RUN apt-get install sendmail -y
-RUN apt-get install ssmtp -y
-RUN apt install python-certbot-apache -y
-RUN echo "certbot --apache --non-interactive --agree-tos --email $EMAIL --domains $DOMAINS certonly"
-#google pagespeed option
-RUN if [ "$PAGESPEED" = "true" ] ; then \
-    wget https://dl-ssl.google.com/dl/linux/direct/mod-pagespeed-stable_current_amd64.deb \
-    && dpkg -i mod-pagespeed-*.deb || true ; \
-    apt-get -f install ; \
-    rm -rf mod-pagespeed-*.deb ; \
-    service apache2 restart ; \
-    else echo "Without pagespeed" ; \
-    fi
+WORKDIR /
 
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
-
-#ENTRYPOINT ["/entrypoint.sh"]
-#CMD ["run"]
-
-#apply changes
-RUN service apache2 restart
-
-RUN echo "Finished !"
+COPY ./scripts /scripts
+COPY ./entrypoint-custom /
+RUN chmod +x /entrypoint-custom
+RUN chmod +x /scripts/*
+ENTRYPOINT ["/entrypoint-custom"]
+CMD ["run"]

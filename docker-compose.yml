@@ -7,8 +7,14 @@ php-apache-certbot:
     DOMAINS: 'example.com'
     EMAIL: 'admin@example.com'
     PAGESPEED: 'true'
-    MODULES: 'rewrite,ssl,cache'
+    LIBMOD: 're2c'
+    APAMOD: 'cache,rewrite,ssl,headers'
+    APDMOD: 'autoindex'
+    PHPMOD: 'bcmath,bz2,intl,gd,mbstring,mysql,zip'
+    PEAMOD: 'xdiff'
+
   volumes:
-    - ${PWD}/gluster/certs/:/etc/letsencrypt/
-    - ${PWD}/gluster/conf/:/opt/docker/etc/httpd/
-    - ${PWD}/gluster/www/:/app/
+    - ${PWD}/path/letsencrypt-conf/:/etc/letsencrypt/
+    - ${PWD}/path/apache-conf/:/etc/apache2/
+    - ${PWD}/path/php-conf/:/etc/apache2/
+    - ${PWD}/path/www/:/var/www/html/

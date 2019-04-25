@@ -1,0 +1,83 @@
+#!/bin/bash
+set -e
+
+#start script
+if [ "$1" = 'run' ]
+then
+
+  sh /scripts/init.sh
+
+  #google pagespeed option
+  if [ "$PAGESPEED" = "true" ]
+  then
+    sh /scripts/pagespeed.sh
+  else
+    echo "Without pagespeed";
+  fi
+
+  #install additionnal dependencies
+  IFS=',' read -r -a libarr <<< "$LIBMOD"
+  for libel in "${libarr[@]}"
+  do
+      apt-get install $libel -y
+  done
+
+  #enable apache modules
+  IFS=',' read -r -a apaarr <<< "$APAMOD"
+  for apael in "${apaarr[@]}"
+  do
+      a2enmod $apael
+  done
+
+  #disable apache modules
+  IFS=',' read -r -a apdarr <<< "$APDMOD"
+  for apdel in "${apdarr[@]}"
+  do
+      a2dismod -f $apdel
+  done
+
+  #install php mods
+  IFS=',' read -r -a phparr <<< "$PHPMOD"
+  for phpel in "${phparr[@]}"
+  do
+      apt-get install php-$phpel -y
+  done
+
+  sh /scripts/before-pecl.sh
+
+  #update pecl repository
+  printf "\n" | pecl channel-update pecl.php.net
+  #install pecl mods
+  IFS=',' read -r -a peaarr <<< "$PEAMOD"
+  for peael in "${peaarr[@]}"
+  do
+      printf "\n" | pecl install $peael
+  done
+
+  #run other script (cron, modules, etc)
+  if [ ! -f "$SHFILE" ]
+  then
+    echo "file not found"
+  else
+    chmod +x $SHFILE
+    echo "run $SHFILE"
+    $SHFILE
+  fi
+
+  #set fqdn
+  echo "ServerName 0.0.0.0" >> /etc/apache2/apache2.conf
+
+  #apply changes
+  service apache2 start
+
+  #documentation
+  sh /scripts/doc.sh
+
+  echo "Apache log :"
+
+  tail -n 3 -f /var/log/apache2/* | grep --line-buffered '.*' | while read LINE0
+  do
+      echo "${LINE0}";
+  done
+fi
+#end script
