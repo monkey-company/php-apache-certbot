@@ -40,18 +40,18 @@ then
       printf "\n" | pecl install $peael
   done
 
-  #enable apache modules
-  IFS=',' read -r -a apaarr <<< "$APAMOD"
-  for apael in "${apaarr[@]}"
-  do
-      a2enmod $apael
-  done
-
   #disable apache modules
   IFS=',' read -r -a apdarr <<< "$APDMOD"
   for apdel in "${apdarr[@]}"
   do
       a2dismod -f $apdel
+  done
+
+  #enable apache modules
+  IFS=',' read -r -a apaarr <<< "$APAMOD"
+  for apael in "${apaarr[@]}"
+  do
+      a2enmod $apael
   done
 
   apt-get autoremove -y
