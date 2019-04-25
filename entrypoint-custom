@@ -5,7 +5,7 @@ set -e
 if [ "$1" = 'run' ]
 then
 
-  sh /scripts/init.sh
+  #sh /scripts/init.sh
 
   #google pagespeed option
   if [ "$PAGESPEED" = "true" ]
@@ -20,20 +20,6 @@ then
   for libel in "${libarr[@]}"
   do
       apt-get install $libel -y
-  done
-
-  #enable apache modules
-  IFS=',' read -r -a apaarr <<< "$APAMOD"
-  for apael in "${apaarr[@]}"
-  do
-      a2enmod $apael
-  done
-
-  #disable apache modules
-  IFS=',' read -r -a apdarr <<< "$APDMOD"
-  for apdel in "${apdarr[@]}"
-  do
-      a2dismod -f $apdel
   done
 
   #install php mods
@@ -54,6 +40,27 @@ then
       printf "\n" | pecl install $peael
   done
 
+  #disable apache modules
+  IFS=',' read -r -a apdarr <<< "$APDMOD"
+  for apdel in "${apdarr[@]}"
+  do
+      a2dismod -f $apdel
+  done
+
+  #enable apache modules
+  IFS=',' read -r -a apaarr <<< "$APAMOD"
+  for apael in "${apaarr[@]}"
+  do
+      a2enmod $apael
+  done
+
+  apt-get autoremove -y
+
+  #set fqdn
+  if ! grep -q "ServerName" /etc/apache2/apache2.conf; then
+    echo "ServerName 0.0.0.0" >> /etc/apache2/apache2.conf
+  fi
+
   #run other script (cron, modules, etc)
   if [ ! -f "$SHFILE" ]
   then
@@ -63,9 +70,6 @@ then
     echo "run $SHFILE"
     $SHFILE
   fi
-
-  #set fqdn
-  echo "ServerName 0.0.0.0" >> /etc/apache2/apache2.conf
 
   #apply changes
   service apache2 start
