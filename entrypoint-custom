@@ -6,6 +6,7 @@ if [ "$1" = 'run' ]
 then
 
   #sh /scripts/init.sh
+  apt-get update
 
   #google pagespeed option
   if [ "$PAGESPEED" = "true" ]
