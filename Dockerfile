@@ -1,5 +1,5 @@
 #!/bin/bash
-FROM ubuntu:bionic
+FROM ubuntu:focal
 #RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
     #variables
@@ -34,9 +34,13 @@ RUN apt-get install apache2 -y && \
     apt-get install php php-dev php-pear libapache2-mod-php -y && \
 
     #install certbot, sendmail and ssmtp for ssl and mails
-    add-apt-repository ppa:certbot/certbot -y && \
-    apt-get update && \
-    apt-get install python-certbot-apache -y
+    apt update && \
+    apt install python3 python3-venv libaugeas0 -y && \
+    python3 -m venv /opt/certbot/ && \
+    /opt/certbot/bin/pip install --upgrade pip && \
+    /opt/certbot/bin/pip install certbot certbot-apache && \
+    ln -s /opt/certbot/bin/certbot /usr/bin/certbot
+
 
 COPY ./scripts /scripts
 COPY ./entrypoint-custom /
